@@ -12,7 +12,39 @@ import java.util.Map;
  * @date 2021/5/23
  */
 public class MaxSubString {
-    public int lengthOfLongestSubstring(String s){
+
+    /**
+     * 2ms
+     * O(n)
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+        int[] reg = new int[128];
+
+        // 初始化注册表
+        for(int i=0; i< 128; i++){
+            reg[i] = -1;
+        }
+
+        int start = 0;
+        int max = 0;
+
+        for(int i=0;i<s.length();i++){
+            int c = s.charAt(i);
+            start = Math.max(start, reg[c]+1);
+            max = Math.max(max, i-start+1);
+            reg[c] = i;
+        }
+        return max;
+    }
+
+    /**
+     * 100ms +
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring1(String s){
         int max= 0;
 
         Map<String, Integer> temp = new HashMap<>();
@@ -41,6 +73,10 @@ public class MaxSubString {
 
         return max;
     }
+
+
+
+
 
     @Test
     public void testCase(){
