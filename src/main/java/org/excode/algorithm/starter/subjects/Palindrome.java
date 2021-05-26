@@ -14,8 +14,15 @@ public class Palindrome {
         String palindrome = s.substring(0,1);
 
         String tmp = "";
-        for (int i = 0; i < s.length(); i++) {
-            int j = i-1, k = i+1;
+        for (int i = 0; i < s.length()-1; i++) {
+            int j, k;
+            if(s.charAt(i) == s.charAt(i+1)){
+                j = i;
+                k = i+1;
+            }else {
+                j= i-1;
+                k= i+1;
+            }
             while (true) {
                 if (j < 0 || k > s.length() - 1) {
                     break;
@@ -43,5 +50,14 @@ public class Palindrome {
         String result = palindrome.longestPalindrome("babad");
 
         Assert.assertEquals("bab", result);
+
+        result = palindrome.longestPalindrome("cbbd");
+        Assert.assertEquals("bb", result);
+
+        result = palindrome.longestPalindrome("a");
+        Assert.assertEquals("a", result);
+
+        result = palindrome.longestPalindrome("ccc");
+        Assert.assertEquals("cc", result);
     }
 }
