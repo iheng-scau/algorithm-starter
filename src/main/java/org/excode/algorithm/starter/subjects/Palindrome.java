@@ -40,7 +40,7 @@ public class Palindrome {
     @Test
     public void test(){
         Palindrome palindrome = new Palindrome();
-        String result = palindrome.longestPalindrome("babab");
+        String result = palindrome.longestPalindrome("babad");
 
         Assert.assertEquals("bab", result);
     }
