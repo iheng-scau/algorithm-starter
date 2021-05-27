@@ -14,7 +14,13 @@ public class Palindrome {
         String palindrome = s.substring(0,1);
 
         String tmp = "";
-        for (int i = 0; i < s.length()-1; i++) {
+        int i = 0;
+        while(i< s.length()) {
+            if((i+1 > s.length()-1)){
+                if(s.charAt(i) == s.charAt(i-1<0?i:i-1))
+                    palindrome = tmp + s.charAt(i);
+                break;
+            }
             int j, k;
             if(s.charAt(i) == s.charAt(i+1)){
                 j = i;
@@ -25,6 +31,7 @@ public class Palindrome {
             }
             while (true) {
                 if (j < 0 || k > s.length() - 1) {
+                    i++;
                     break;
                 }
 
@@ -33,7 +40,8 @@ public class Palindrome {
                     j--;
                     k++;
                 } else {
-                   break;
+                    i = k+1;
+                    break;
                 }
             }
 
@@ -54,10 +62,10 @@ public class Palindrome {
         result = palindrome.longestPalindrome("cbbd");
         Assert.assertEquals("bb", result);
 
-        result = palindrome.longestPalindrome("a");
+        result = palindrome.longestPalindrome("ac");
         Assert.assertEquals("a", result);
 
-        result = palindrome.longestPalindrome("ccc");
-        Assert.assertEquals("cc", result);
+        result = palindrome.longestPalindrome("bb");
+        Assert.assertEquals("bb", result);
     }
 }
