@@ -17,6 +17,8 @@ public class PowerTwo {
      * 另外的思路是
      * 1.  n &(-n) =n
      * 2.  2^3mod n ==0
+     *
+     * 时间复杂度O(1)
      * @param n
      * @return
      */
@@ -26,6 +28,7 @@ public class PowerTwo {
 
     /**
      *  循环取mod的方式判定
+     *  时间复杂度O(n)
      * @param n
      * @return
      */
