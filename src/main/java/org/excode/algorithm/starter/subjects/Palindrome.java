@@ -15,6 +15,9 @@ public class Palindrome {
 
         String tmp = "";
         int i = 0;
+        if(s.length() ==1)
+            return s;
+
         while(i< s.length()) {
             if((i+1 > s.length()-1)){
                 if(s.charAt(i) == s.charAt(i-1<0?i:i-1))
@@ -31,7 +34,7 @@ public class Palindrome {
             }
             while (true) {
                 if (j < 0 || k > s.length() - 1) {
-                    i++;
+                    i = k;
                     break;
                 }
 
