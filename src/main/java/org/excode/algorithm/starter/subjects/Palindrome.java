@@ -11,48 +11,35 @@ import org.junit.Test;
  */
 public class Palindrome {
     public String longestPalindrome(String s) {
-        String palindrome = s.substring(0,1);
+        if(s == null || s.length() < 1){
+            return "";
+        }
 
-        String tmp = "";
-        int i = 0;
-        if(s.length() ==1)
-            return s;
+        int start =0;
+        int end =0;
 
-        while(i< s.length()) {
-            if((i+1 > s.length()-1)){
-                if(s.charAt(i) == s.charAt(i-1<0?i:i-1))
-                    palindrome = tmp + s.charAt(i);
-                break;
-            }
-            int j, k;
-            if(s.charAt(i) == s.charAt(i+1)){
-                j = i;
-                k = i+1;
-            }else {
-                j= i-1;
-                k= i+1;
-            }
-            while (true) {
-                if (j < 0 || k > s.length() - 1) {
-                    i = k;
-                    break;
-                }
+        for(int i=0; i<s.length(); i++){
+            int l1= findPalindrome(s, i, i);
+            int l2= findPalindrome(s, i, i+1);
 
-                if (s.charAt(j) == s.charAt(k)) {
-                    tmp = s.substring(j,k+1);
-                    j--;
-                    k++;
-                } else {
-                    i = k+1;
-                    break;
-                }
-            }
+            int length = Math.max(l1,l2);
 
-            if(tmp.length()>palindrome.length()){
-                palindrome = tmp;
+            if(length > end -start){
+                start = i -(length-1)/2;
+                end = i+length/2;
             }
         }
-        return palindrome;
+
+        return  s.substring(start, end+1);
+    }
+
+    public int findPalindrome(String s, int left, int right){
+        while(left>=0 && right<s.length() && s.charAt(left) == s.charAt(right)){
+            left --;
+            right ++;
+        }
+
+        return  right - left-1;
     }
 
     @Test
