@@ -17,16 +17,12 @@ public class Intersect {
             return null;
         }
 
-        if(headA.val == headB.val){
-            return headA;
-        }
-
-        while(headA.next!=null){
+        while(headA!=null){
             reg.add(headA);
             headA = headA.next;
         }
 
-        while(headB.next != null){
+        while(headB!= null){
             if(reg.contains(headB)){
                 return headB;
             }
